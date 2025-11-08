@@ -3,12 +3,13 @@ import "dotenv/config"
 import {connectDB} from "./lib/db.js"
 import dotenv from "dotenv/config"
 import cors from "cors"
+import job from "./lib/cron.js" // cron job to send GET request every 14 minutes        
 
 
 import authRoutes from "./routes/authRoute.js"
 import bookRoutes from "./routes/bookRoute.js"
 
-
+job.start();
 const app =express()
 const PORT =process.env.PORT || 3000;
 app.use(express.json())

@@ -10,8 +10,8 @@ export const useAuthStore = create((set) => ({
   register: async (userName, email, password) => {
     const baseUrl =
       Platform.OS === "android"
-        ? "http://10.0.2.2:3000"
-        : "http://localhost:3000";
+      ? "https://book-app-mobile.onrender.com"
+      : "https://book-app-mobile.onrender.com";
 
     set({ isLoading: true });
     try {
