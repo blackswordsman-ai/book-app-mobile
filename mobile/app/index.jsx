@@ -1,13 +1,13 @@
 import { Text, View, StyleSheet } from "react-native";
-import { Image } from "expo-image";
+// import { Image } from "expo-image";
 import{Link} from "expo-router";
 
 export default function Index() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Hello Native</Text>
-      <Image source={require("../assets/images/icon.png")} style={styles.image} contentFit="contain" />
-      <Link href="/login" style={styles.loginButton}>Login</Link>
+      <Link href="/(auth)" style={styles.loginButton}>Login</Link>
+      <Link href="/(auth)/Signup" style={styles.signupButton}>Signup</Link>
     </View>
   );
 }

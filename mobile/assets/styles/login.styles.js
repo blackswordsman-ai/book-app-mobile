@@ -6,7 +6,7 @@ const { width } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
   container: {
-    flexGrow: 1,
+    flex: 1,
     backgroundColor: COLORS.background,
     padding: 20,
     justifyContent: "center",
@@ -14,6 +14,12 @@ const styles = StyleSheet.create({
   scrollViewStyle: {
     flex: 1,
     backgroundColor: COLORS.background,
+  },
+  keyboardAvoidingView: {
+    flex: 1,
+  },
+  scrollViewContent: {
+    flexGrow: 1,
   },
   topIllustration: {
     alignItems: "center",
