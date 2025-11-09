@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Platform } from "react-native";
+// import { Platform } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { API_BASE_URL } from "../constants/api";
 
@@ -66,7 +66,7 @@ export const useAuthStore = create((set) => ({
             body:JSON.stringify({email,password})
         })
         const data = await response.json();
-        console.log("Data in login:",data);
+        // console.log("Data in login:",data);
      
 
         if(!response.ok) throw new Error(data.message) || "Something went wrong";

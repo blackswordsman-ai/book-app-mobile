@@ -118,7 +118,6 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.primary,
     borderRadius: 12,
     height: 50,
-    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     marginTop: 16,
@@ -128,6 +127,15 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 2,
   },
+  buttonDisabled: {
+    backgroundColor: COLORS.textSecondary,
+    opacity: 0.7,
+  },
+  buttonContent: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   buttonText: {
     color: COLORS.white,
     fontSize: 16,
@@ -135,6 +143,33 @@ const styles = StyleSheet.create({
   },
   buttonIcon: {
     marginRight: 8,
+  },
+  errorText: {
+    color: '#ff3b30',
+    fontSize: 12,
+    marginTop: 4,
+  },
+  removeImageButton: {
+    position: 'absolute',
+    top: 8,
+    right: 8,
+    backgroundColor: 'white',
+    borderRadius: 14,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  captionFooter: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 4,
+  },
+  charCount: {
+    fontSize: 12,
+    color: COLORS.textSecondary,
   },
 });
 
