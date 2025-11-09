@@ -12,7 +12,8 @@ import bookRoutes from "./routes/bookRoute.js"
 job.start();
 const app =express()
 const PORT =process.env.PORT || 3000;
-app.use(express.json())
+app.use(express.json({limit: '50mb'})) // Increase limit for base64 images
+app.use(express.urlencoded({limit: '50mb', extended: true}))
 app.use(cors())
 
 

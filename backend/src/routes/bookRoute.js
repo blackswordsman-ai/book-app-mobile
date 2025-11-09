@@ -8,12 +8,18 @@ const router = express.Router();
 router.post("/", protectRoute, async (req, res) => {
   try {
     const { title, caption, image, rating } = req.body;
+    console.log("Received request - Title:", title, "Rating:", rating, "Has image:", !!image);
+    
     if (!title || !caption || !image || !rating) {
       return res.status(400).json({ message: "All fields are required" });
     }
+    
     // upload image to cloudinary
+    console.log("Uploading image to cloudinary...");
     const uploadResponse = await cloudinary.uploader.upload(image);
+    console.log("Image uploaded successfully:", uploadResponse.secure_url);
     const imageUrl = uploadResponse.secure_url;
+    
     // save book to database
     const newBook = new Book({
       title,
@@ -23,12 +29,16 @@ router.post("/", protectRoute, async (req, res) => {
       user: req.user._id,
     });
     await newBook.save();
+    console.log("Book saved to database successfully");
+    
     res
       .status(201)
       .json({ message: "Book created successfully", book: newBook });
   } catch (error) {
     console.log("Error in create book route:", error);
-    res.status(500).json({ message: "Internal server error" });
+    console.log("Error message:", error.message);
+    console.log("Error stack:", error.stack);
+    res.status(500).json({ message: "Internal server error", error: error.message });
   }
 });
 

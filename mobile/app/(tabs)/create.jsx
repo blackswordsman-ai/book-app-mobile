@@ -117,6 +117,12 @@ export default function Create() {
     const imageType= fileType ? `image/${fileType.toLowerCase()}` : "image/jpeg";
 
     const imageDataUrl =`data:${imageType};base64,${imageBase64}`;
+    
+    console.log("Submitting book...");
+    console.log("Title:", title);
+    console.log("Rating:", rating);
+    console.log("Image data URL length:", imageDataUrl.length);
+    console.log("Token exists:", !!token);
 
     const response = await fetch(`${API_BASE_URL}/api/books`,{
         method:"POST",
@@ -127,13 +133,25 @@ export default function Create() {
         body:JSON.stringify({title,caption,image:imageDataUrl,rating})
     })
     const data = await response.json();
+    console.log("Response status:", response.status);
     console.log("Data in handleSubmit:",data);
-    if(!response.ok) throw new Error(data.message);
+    
+    if(!response.ok) {
+        throw new Error(data.error || data.message || "Failed to create book");
+    }
+    
     Alert.alert("Success","Book created successfully");
+    // Reset form
+    setTitle("");
+    setCaption("");
+    setRating(3);
+    setImage(null);
+    setImageBase64(null);
     router.push("/(tabs)");
     } catch (error) {
         console.log("Error in handleSubmit:",error);
-        Alert.alert("Error",error.message);
+        console.log("Error message:", error.message);
+        Alert.alert("Error", error.message || "Something went wrong");
     } finally {
         setIsLoading(false);
     }
